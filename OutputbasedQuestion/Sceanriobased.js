@@ -120,6 +120,24 @@ console.log('x:',x)
 console.log(NaN === NaN) // false
 console.log(NaN == NaN) // false
 
+//Why NaN === NaN is false?
+
+console.log(0 / 0); // NaN
+console.log(Math.sqrt(-1)); // NaN
+console.log(parseInt("abc")); // NaN
+
+// The JavaScript specification states that NaN is not equal to any value, including itself. 
+// This is true for both the strict equality operator (===) and loose equality operator (==).
+
+
+// Strict equality (===) checks if two values are of the same type and have the same value. 
+// Since NaN is specifically defined as not being equal to itself, this comparison returns false.
+// Why NaN == NaN is also false?
+
+// Loose equality (==) performs type conversion before comparing.
+//  However, the special rule for NaN applies: it is never equal to itself, 
+//  so this also returns false.
+
 
 //NaN, use Number.isNaN() or isNaN() to most clearly determine whether a value is NaN
 isNaN(NaN); // true
@@ -134,9 +152,23 @@ arr1.includes(NaN); // true
 arr1.findIndex((n) => Number.isNaN(n)); // 2
 
 NaN ** 0 === 1; // true --> NaN ** 0 = 1
+// Mathematical x^0 = 1 Same works for N^0 is 1
+
+console.log(NaN ** 0); // 1
+console.log(Infinity ** 0); // 1
+console.log(0 ** 0); // 1 (controversial but defined in JavaScript as 1)
+console.log((-Infinity) ** 0); // 1
+
 
 isNaN("hello world"); // true
+// This happens because "hello world" 
+// cannot be converted into a valid number, so isNaN() treats it as NaN
 Number.isNaN("hello world"); // false
+
+//Input "hello world":
+// "hello world" is a string, not a number.
+// Since it is not a number, Number.isNaN("hello world") immediately returns false
+
 // the former will return true if the value is currently NaN, 
 // or if it is going to be NaN after it is coerced to a number, 
 // while the latter will return true only if the value is currently NaN
@@ -144,11 +176,11 @@ Number.isNaN("hello world"); // false
 
 //13.
 
-console.log(undefined === undefined) // true0 
+console.log(undefined === undefined) // true
 console.log(undefined == undefined) // true
 
-console.log('Null',null === null)
-console.log('Null',null == null)
+console.log('Null',null === null) // trur
+console.log('Null',null == null) // true
 
 // typeOf(undefined) ==> undefined
 
